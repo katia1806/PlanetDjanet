@@ -1,7 +1,6 @@
-# app.py
-
-import tools as t
+# Installed packages
 import streamlit as st
+
 # Internal packages
 from src import (
     facebook,
@@ -10,7 +9,7 @@ from src import (
     pictures,
     trips)
 
-# Declaration of different pages
+# declaration of different pages
 PAGES = {
     'Instagram': instagram,
     'Facebook': facebook,
@@ -27,7 +26,7 @@ footer = st.container()
 
 
 def display_sidebar():
-    """ display the sidebar of the page
+    """Display the sidebar of the page
 
     Returns:
         streamlit.runtime.uploaded_file_manager.UploadedFile: the file uploaded
