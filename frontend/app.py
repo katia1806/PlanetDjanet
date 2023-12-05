@@ -72,6 +72,16 @@ with header:
 with main:
     page = PAGES[selection]
     page.main(myzipfile)
+    if page == "Facebook":
+        facebook.show_facebook_dashboard()
+    if page == "Instagram":
+        instagram.show_instagram_dashboard()
+    if page == "Meta":
+        meta.show_meta_dashboard()
+    if page == "Trips":
+        trips.show_trips_dashboard()
+    if page == "Pictures":
+        pictures.show_pictures_dashboard()
 
 # --- footer of the page ---
 with footer:
