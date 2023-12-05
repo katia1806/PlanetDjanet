@@ -1,1 +1,19 @@
 # PlanetDjanet
+
+
+## For running
+If it is the first time to run this project, please run
+```docker-compose up```
+
+If you have already run our project and you want to Clear the docker to use the new version, please run
+```docker-compose down -v```, after run this code, you need to run ```docker-compose up``` for two times, the first time is to initialise and the second time is to run the docker
+
+
+## For database
+- Dockerfile: Create a Docker container for a MongoDB server with additional Python requirements
+- init-mongos.js: Initialise an user of our database planet_djanet
+- mongo-init.sh: Put automatically the json, csv file into the collection of MongoDB
+- files: Store all the files used to create the database
+- github\workflows\process_csv.yml --> Convert all the csv files into uft-8 for each push
+- scripts\process_csv.py --> Do the work of converting
+
