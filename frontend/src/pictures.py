@@ -2,7 +2,7 @@
 import streamlit as st
 from backend.common import get_image  
 
-def show_pictures_page():
+def display():
     st.title("Pictures")
 
     # Load images

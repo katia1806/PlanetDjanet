@@ -3,7 +3,7 @@ import streamlit as st
 from database.database import save_reservation
 
 
-def show_trips_page():
+def display():
     st.header("Book your trip")
 
     with st.form(key="my_form"):

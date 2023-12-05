@@ -1,6 +1,5 @@
 # app.py
 
-import tools as t
 import streamlit as st
 # Internal packages
 from src import (
@@ -9,6 +8,8 @@ from src import (
     meta,
     pictures,
     trips)
+
+from common import display_social_media_links
 
 # Declaration of different pages
 PAGES = {
@@ -27,63 +28,38 @@ footer = st.container()
 
 
 def display_sidebar():
-    """ display the sidebar of the page
+    """Display the sidebar of the page"""
+    st.sidebar.image("img/logo.png", width=300)  # Replace with your logo path
+    checking = st.sidebar.checkbox("I agree to the privacy policy")
+    
+    if checking:
+        selected_page = st.sidebar.radio("Navigate to", list(PAGES.keys()))
+    else:
+        selected_page = None
+        st.sidebar.caption("Agree to the privacy policy to access the pages")
 
-    Returns:
-        streamlit.runtime.uploaded_file_manager.UploadedFile: the file uploaded
-        str: the page selected
-    """
-    st.markdown(
-        "<h2 style='text-align: center;'>Google Map Dataset</h2>", unsafe_allow_html=True)  # title of the sidebar
-    st.image("img/Google-Maps-Logo.png")  # logo de google
-    myzipfile = t.upload()  # upload the data
-    selection = st.radio("Navigation of the pages", list(
-        PAGES.keys()))  # navigation to the other page
+    # Display social media links or other information in the sidebar
+    display_social_media_links()
 
-    # show the contact of linkedin and github
-    st.markdown(
-        "<h2 style='text-align: center;'>Contact me</h2>", unsafe_allow_html=True)  # contact me
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown(f"""<div style="text-align: center">
-                                <a href='https://www.linkedin.com/in/xiangyu-an-34109a196/'>{t.img_to_html('img/linkedin.png')}</a>
-                            </div>""",
-                    unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"""<div style="text-align: center">
-                            <a href='https://github.com/AN-Xiang-yu'>{t.img_to_html('img/github.png')}</a>
-                        </div>""",
-                    unsafe_allow_html=True)
-    return myzipfile, selection
+    return selected_page
 
+def app():
+    """Main app function"""
+    with sidebar:
+        selected_page = display_sidebar()
 
-#  ----- body of the page ------
-# sidebar of the page
-with sidebar:
-    myzipfile, selection = display_sidebar()
+    with header:
+        # You can put a welcome message or header information here
+        st.title("Welcome to Planet Djanet")
 
+    with main:
+        if selected_page:
+            page = PAGES[selected_page]
+            page.display()  
 
-# --- header of the page ---
-with header:
-    st.markdown(
-        f"""<h1 style='text-align: center;'>{selection}</h1>""", unsafe_allow_html=True)  # h1 title of the page
+    with footer:
+        # Footer content, e.g., copyright message, contact info, etc.
+        st.markdown("Copyright©2022 Planet Djanet. All Rights Reserved.")
 
-# --- main of the page ----
-with main:
-    page = PAGES[selection]
-    page.main(myzipfile)
-    if page == "Facebook":
-        facebook.show_facebook_dashboard()
-    if page == "Instagram":
-        instagram.show_instagram_dashboard()
-    if page == "Meta":
-        meta.show_meta_dashboard()
-    if page == "Trips":
-        trips.show_trips_dashboard()
-    if page == "Pictures":
-        pictures.show_pictures_dashboard()
-
-# --- footer of the page ---
-with footer:
-    st.markdown(
-        "<footer style='text-align: center;'>Copyright©2022-2023 Xiangyu AN - All Rights Reserved. </footer>", unsafe_allow_html=True)
+if __name__ == "__main__":
+    app()

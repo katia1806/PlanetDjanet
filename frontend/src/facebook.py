@@ -6,7 +6,7 @@ import plotly.express as px
 #Internal imports
 from common import by_month, by_week
 
-def show_facebook_dashboard():
+def display():
     # Load Facebook data
     df_couverture_fb, df_likes_fb, df_fb_publis = load_facebook_data()
 
