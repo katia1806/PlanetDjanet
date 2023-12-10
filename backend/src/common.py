@@ -1,37 +1,42 @@
 # Standard library imports
-from datetime import datetime, date
 import time
+from datetime import datetime, date
 
-# Related third party imports
+# Intalled packages
 import pandas as pd
-from PIL import Image
 import streamlit as st
+from PIL import Image
+
 
 def get_image(path: str) -> Image:
     """Load an image from the given path.
-    
+
     Parameters:
     - path (str): Path of the image file.
-    
+
     Returns:
     - Image: PIL Image object.
     """
     image = Image.open(path)
     return image
 
+
 def to_date(X):
     """Convert the 'Date' column of a DataFrame to datetime format."""
     X['Date'] = pd.to_datetime(X['Date'], format='%Y-%m-%d %H:%M:%S')
 
-def get_month(dt): 
+
+def get_month(dt):
     """Extract the month from a datetime object."""
     return dt.month
 
-def get_year(dt): 
+
+def get_year(dt):
     """Extract the year from a datetime object."""
     return dt.year
 
-def get_week(dt): 
+
+def get_week(dt):
     """Extract the week from a datetime object."""
     return dt.week
 
@@ -46,6 +51,7 @@ def get_lat_long(x, processing_media_list=False):
     except:
         return None
 
+
 @st.cache()
 def get_accounts(x):
     """Extract account information from a JSON structure."""
@@ -55,12 +61,14 @@ def get_accounts(x):
     except:
         return None
 
+
 @st.cache()
 def delete_percentage(df, column):
     """Delete percentage signs from a column in a DataFrame."""
-    time.sleep(1)    
+    time.sleep(1)
     ma_list = list(df[column])
-    ma_list = list(map(lambda x: float(x.replace(',', '.').replace('%', '')), ma_list))
+    ma_list = list(
+        map(lambda x: float(x.replace(',', '.').replace('%', '')), ma_list))
     df.drop([column], axis=1)
     value = pd.DataFrame(ma_list).rename(columns={0: "Valeur"}, index={})
     return value
