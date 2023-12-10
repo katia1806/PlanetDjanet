@@ -3,10 +3,11 @@
 
 ## For running
 If it is the first time to run this project, please run
-```docker-compose up```
+```docker-compose up --build```
+or run  ```docker-compose up``` if it is not the first time that you run it.
 
-If you have already run our project and you want to Clear the docker to use the new version, please run
-```docker-compose down -v```, after run this code, you need to run ```docker-compose up``` for two times, the first time is to initialise and the second time is to run the docker
+If you have already run our project and you want to Clear the docker, please run
+```docker-compose down -v```, but after that please run ```docker-compose up --build```
 
 
 ## For database
