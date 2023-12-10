@@ -1,3 +1,6 @@
+# do a echo
+echo "mongo-init.sh is running"
+
 mongoimport --jsonArray --db planet_djanet  --collection posts_1 --file /data/posts_1.json
 mongoimport --jsonArray --db planet_djanet  --collection posts --file /data/posts.json
 mongoimport --jsonArray --db planet_djanet  --collection followers --file /data/followers.json
