@@ -22,3 +22,17 @@ services:
     environment:
       - NODE_ENV=production # Set environment variables if needed
   
+  backend:
+    container_name: planetdjanet-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=rootpwd
+      - MONGODB_HOSTNAME=planetdjanet-mongo
+      - MONGODB_DATABASE=planet_djanet
+    depends_on:
+      - mongodb
