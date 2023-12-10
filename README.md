@@ -2,12 +2,16 @@
 
 
 ## For running
+### Initialisation
 If it is the first time to run this project, please run
 ```docker-compose up --build```
 or run  ```docker-compose up``` if it is not the first time that you run it.
 
 If you have already run our project and you want to Clear the docker, please run
 ```docker-compose down -v```, but after that please run ```docker-compose up --build```
+
+### Running of the application
+Go to the link http://localhost:8501/
 
 
 ## For database
