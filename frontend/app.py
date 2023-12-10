@@ -1,25 +1,28 @@
 # app.py
 # Installed imports
 import streamlit as st
+import requests
+
+# Backend URL
+BACKEND_URL = "http://backend:8000"
+
 
 # # Internal imports
-# from src import (
-#     facebook,
-#     instagram,
-#     meta,
-#     pictures,
-#     trips)
+from src import (
+    facebook,
+    pictures
+    )
 
-# # from common import display_social_media_links
+from common import display_social_media_links
 
-# # declaration of different pages
-# PAGES = {
-#     'Instagram': instagram,
-#     'Facebook': facebook,
-#     'Meta': meta,
-#     'Trips': trips,
-#     'Pictures': pictures,
-# }
+# declaration of different pages
+PAGES = {
+    # 'Instagram': instagram,
+    'Facebook': facebook,
+    # 'Meta': meta,
+    # 'Trips': trips,
+    'Pictures': pictures,
+}
 
 # create the container block
 sidebar = st.sidebar
@@ -27,22 +30,21 @@ header = st.container()
 main = st.container()
 footer = st.container()
 
+def display_sidebar():
+    """Display the sidebar of the page"""
+    st.sidebar.image("img/logo.png", width=300)  # Replace with your logo path
+    checking = st.sidebar.checkbox("I agree to the privacy policy")
 
-# def display_sidebar():
-#     """Display the sidebar of the page"""
-#     st.sidebar.image("img/logo.png", width=300)  # Replace with your logo path
-#     checking = st.sidebar.checkbox("I agree to the privacy policy")
+    if checking:
+        selected_page = st.sidebar.radio("Navigate to", list(PAGES.keys()))
+    else:
+        selected_page = None
+        st.sidebar.caption("Agree to the privacy policy to access the pages")
 
-#     if checking:
-#         selected_page = st.sidebar.radio("Navigate to", list(PAGES.keys()))
-#     else:
-#         selected_page = None
-#         st.sidebar.caption("Agree to the privacy policy to access the pages")
+    # Display social media links or other information in the sidebar
+    # display_social_media_links()
 
-#     # Display social media links or other information in the sidebar
-#     # display_social_media_links()
-
-#     return selected_page
+    return selected_page
 
 
 def app():
@@ -54,10 +56,12 @@ def app():
         # You can put a welcome message or header information here
         st.title("Welcome to Planet Djanet")
 
-    # with main:
-    #     if selected_page:
-    #         page = PAGES[selected_page]
-    #         page.display()
+
+
+    with main:
+        if selected_page:
+            page = PAGES[selected_page]
+            page.display()
 
     with footer:
         # Footer content
