@@ -1,7 +1,6 @@
 # app.py
 # Installed imports
 import streamlit as st
-import requests
 
 # Backend URL
 BACKEND_URL = "http://backend:8000"
@@ -58,8 +57,6 @@ def app():
         st.title("Welcome to Planet Djanet")
 
     with main:
-        default_page = PAGES['Facebook']
-        default_page.display()
         selected_page = display_sidebar()
         if selected_page:
             page = PAGES[selected_page]

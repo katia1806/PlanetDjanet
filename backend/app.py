@@ -41,7 +41,7 @@ client = MongoClient(
 )
 db = client[MONGO_DB]
 
-@app.get("/{page_name}}")
+@app.get("/{page_name}")
 async def get_data(page_name: str):
     """Retrieve data by page_name from the backend."""
     data = {} 
@@ -61,3 +61,13 @@ async def get_data(page_name: str):
         raise HTTPException(status_code=500, detail=str(e))
     
     return data
+
+
+@app.post("/save_reservation")
+async def save_reservation(reservation: Reservation):
+    collection = db[reservation]  
+    try:
+        result = collection.insert_one(reservation.dict())
+        return {"message": "Reservation saved successfully", "id": str(result.inserted_id)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
