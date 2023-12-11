@@ -23,4 +23,3 @@ def display():
     st.image(image5)
     st.image(image6)
 
-This function can be called from the main app.py file

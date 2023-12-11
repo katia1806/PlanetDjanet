@@ -5,15 +5,14 @@ import plotly.express as px
 
 # Internal imports
 from backend.src.common import by_month, by_week
-from .endpoints import get_file
+from ..endpoints import get_page_data
 
-FILE_NAMES = ["Couverture.csv", "Visits_Fb.csv", "Tous les contenus.csv"]
 
 def display():
-    # Load Facebook data
-    df_couverture_fb = get_file(FILE_NAMES[0])
-    df_likes_fb = get_file(FILE_NAMES[1])
-    df_fb_publis = get_file(FILE_NAMES[2])
+    files = get_page_data("facebook")
+    df_fb_publis = files["df_fb_publis"]
+    df_likes_fb = files["df_likes_fb"]
+    df_couverture_fb = files["df_couverture_fb"]
     
     # Facebook Dashboard UI
     st.header("Facebook Dashboard")

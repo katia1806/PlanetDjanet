@@ -6,14 +6,15 @@ import requests
 # Backend URL
 BACKEND_URL = "http://backend:8000"
 
-
 # # Internal imports
 from src import (
     facebook,
-    pictures
+    # pictures, 
+    # meta, 
+    # instagram
     )
 
-from common import display_social_media_links
+# from common import display_social_media_links
 
 # declaration of different pages
 PAGES = {
@@ -21,7 +22,7 @@ PAGES = {
     'Facebook': facebook,
     # 'Meta': meta,
     # 'Trips': trips,
-    'Pictures': pictures,
+    #'Pictures': pictures,
 }
 
 # create the container block
@@ -56,9 +57,10 @@ def app():
         # You can put a welcome message or header information here
         st.title("Welcome to Planet Djanet")
 
-
-
     with main:
+        default_page = PAGES['Facebook']
+        default_page.display()
+        selected_page = display_sidebar()
         if selected_page:
             page = PAGES[selected_page]
             page.display()
