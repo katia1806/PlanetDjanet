@@ -34,19 +34,14 @@ except Exception as e:
 @app.get("/data/{file_name}")
 async def get_data(file_name: str):
     """Get data from the specified file/collection in MongoDB."""
-    # # Here, we use file_name to decide the collection we're querying
-    # if file_name.endswith('.json'):
-    #     collection_name = file_name[:-5]  
-    # elif file_name.endswith('.csv'):
-    #     collection_name = file_name[:-4] 
-    # else:
-    #     raise HTTPException(status_code=400, detail="Invalid file name extension")
 
     collection = db["posts_1"]
     
     # Perform the query (retrieving all documents in the collection)
     try:
         data = list(collection.find({}))
+        for item in data:
+            item["_id"] = str(item["_id"])  # Convert ObjectId to string
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
