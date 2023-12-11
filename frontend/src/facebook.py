@@ -11,8 +11,7 @@ BACKEND_URL = "http://backend:8000"
 
 
 def display():
-    print(st.session_state.selected_page)
-    response = requests.get(f"{BACKEND_URL}/{st.session_state.selected_page}")
+    response = requests.get(f"{BACKEND_URL}/facebook")    
     if response.status_code == 200:
         return response.json()
     else:
