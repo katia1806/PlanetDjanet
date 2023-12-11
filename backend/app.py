@@ -1,40 +1,21 @@
 from fastapi import FastAPI, HTTPException
 from pymongo import MongoClient
 from typing import List, Dict
-import os
-
+from config import (META_DATA, FACEBOOK_DATA, INSTAGRAM_DATA, MONGO_DB, MONGO_HOST, MONGO_PASSWORD, MONGO_PORT, MONGO_USER)
+from pydantic import BaseModel
 app = FastAPI()
 
-# Environment variables for MongoDB credentials
-MONGO_USER = os.getenv('MONGO_USER', 'default_user')
-MONGO_PASSWORD = os.getenv('MONGO_PASSWORD', 'default_password')
-MONGO_HOST = os.getenv('MONGO_HOST', 'localhost')
-MONGO_PORT = os.getenv('MONGO_PORT', '27017')
-MONGO_DB = os.getenv('MONGO_DB', 'planet_djanet')
+from pydantic import BaseModel
 
-FACEBOOK_DATA = [
-    "all_content", 
-    "couverture_fb", 
-    "likes_fb"
-]
+class Reservation(BaseModel):
+    first_name: str
+    last_name: str
+    phone_number: str
+    email: str
+    number_of_tickets: int
+    group_of: list[str]
 
-INSTAGRAM_DATA = [
-    "all_content",  
-    "couverture_insta", 
-    "visitors_insta", 
-    "likes_gender_age", 
-    "followers_insta_gender_age", 
-    "following",
-    "followers"
-]
-
-META_DATA = [
-    "posts", 
-    "posts_1", 
-    "pub", 
-    "likes_city"
-]
-
+    
 # Setup MongoDB Client
 client = MongoClient(
     f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}"

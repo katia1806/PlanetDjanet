@@ -4,7 +4,7 @@ import streamlit as st
 
 # Internal imports
 from config import PAGES
-from src.common import display_social_media_links
+# from src.common import display_social_media_links
 
 
 def display_sidebar() -> str:
@@ -26,7 +26,7 @@ def display_sidebar() -> str:
         st.sidebar.caption("Agree to the privacy policy to access the pages")
 
     # display social media links or other information in the sidebar
-    display_social_media_links()
+    # display_social_media_links()
 
     return selected_page
 
