@@ -2,10 +2,9 @@ version: '3.8'
 services:
   mongodb:
     container_name: planetdjanet-mongo
-    image: mongo:latest
     build:
       context: ./database
-      dockerfile: ./database/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "27017:27017"
     environment:
@@ -14,7 +13,6 @@ services:
       MONGO_INITDB_DATABASE: planet_djanet
     volumes:
       - ./database/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
-      - ./database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
       - ./database/files/posts_1.json:/data/posts_1.json
       - ./database/files/followers.json:/data/followers.json
       - ./database/files/following.json:/data/following.json
@@ -27,6 +25,5 @@ services:
       - ./database/files/likes_gender_age.csv:/data/likes_gender_age.csv
       - ./database/files/likes_ville.csv:/data/likes_ville.csv
       - ./database/files/Tendances_publicitaires.csv:/data/Tendances_publicitaires.csv
-volumes:
-  mongodb_data_container:
+    # command: ["/bin/bash", "/docker-entrypoint-initdb.d/mongo-init.sh"]
   
