@@ -2,7 +2,7 @@ pandas == 1.5.2
 streamlit == 1.12.2
 altair==4.0
 plotly==4.9.0
-matplotlib==3.3.1
-seaborn==0.10.1
+matplotlib==3.6.2
+seaborn==0.12.2
 bokeh == 2.1.1
 
