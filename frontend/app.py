@@ -2,69 +2,58 @@
 # Installed imports
 import streamlit as st
 
-# Backend URL
-BACKEND_URL = "http://backend:8000"
+# Internal imports
+from config import PAGES
+from src.common import display_social_media_links
 
-# # Internal imports
-from src import (
-    facebook,
-    # pictures, 
-    # meta, 
-    # instagram
-    )
 
-# from common import display_social_media_links
-
-# declaration of different pages
-PAGES = {
-    # 'Instagram': instagram,
-    'Facebook': facebook,
-    # 'Meta': meta,
-    # 'Trips': trips,
-    #'Pictures': pictures,
-}
-
-# create the container block
-sidebar = st.sidebar
-header = st.container()
-main = st.container()
-footer = st.container()
-
-def display_sidebar():
-    """Display the sidebar of the page"""
-    st.sidebar.image("img/logo.png", width=300)  # Replace with your logo path
+def display_sidebar() -> str:
+    """Display the sidebar of the page
+    Returns:
+        selected_page: The page selected by the user
+    """
+    # display the logo
+    st.sidebar.image("static/logo2.0._blanc_noback.png", width=300)  # Replace with your logo path
+    
+    # display the privacy policy
     checking = st.sidebar.checkbox("I agree to the privacy policy")
 
+    # display the navigation menu
     if checking:
         selected_page = st.sidebar.radio("Navigate to", list(PAGES.keys()))
     else:
         selected_page = None
         st.sidebar.caption("Agree to the privacy policy to access the pages")
 
-    # Display social media links or other information in the sidebar
-    # display_social_media_links()
+    # display social media links or other information in the sidebar
+    display_social_media_links()
 
     return selected_page
 
 
 def app():
     """Main app function"""
-    # with sidebar:
-    #     selected_page = display_sidebar()
+    # initialisations
+    sidebar = st.sidebar
+    header = st.container()
+    main = st.container()
+    footer = st.container()
+    
+    with sidebar:
+        page_selected = display_sidebar()
 
     with header:
-        # You can put a welcome message or header information here
-        st.title("Welcome to Planet Djanet")
+        st.markdown(
+        f"""<h1 style='text-align: center;'>Welcome to Planet Djanet</h1>""", unsafe_allow_html=True)  # h1 title of the page
 
     with main:
-        selected_page = display_sidebar()
-        if selected_page:
-            page = PAGES[selected_page]
+        if page_selected:
+            page = PAGES[page_selected]
             page.display()
 
     with footer:
-        # Footer content
-        st.markdown("Copyright©2022 Planet Djanet. All Rights Reserved.")
+        st.markdown(
+            "<footer style='text-align: center;'>Copyright©2022 Planet Djanet. All Rights Reserved.</footer>", unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
