@@ -5,6 +5,7 @@ from backend.src.mongodb_connection import MongoDBConnection
 class TestMongoDBConnection(unittest.TestCase):
     def setUp(self):
         """Set up the MongoDB connection"""
+
         self.mongo_connection = MongoDBConnection()
 
     def test_get_collection(self):

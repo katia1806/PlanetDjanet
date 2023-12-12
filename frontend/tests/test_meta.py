@@ -14,11 +14,11 @@ from frontend.src.controllers.meta_controller import (
 )
 
 
-@patch('src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
+@patch('frontend.src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
 def test_get_metrics_data(mock_getenv):
     """Test the function get_metrics_data
     """
-    from src.controllers import meta_controller
+    from frontend.src.controllers import meta_controller
     reload(meta_controller)  # reload the module to mock the os.getenv function
 
     # call the function
@@ -60,11 +60,11 @@ def test_get_metrics_data(mock_getenv):
     should be int64"
 
 
-@patch('src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
+@patch('frontend.src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
 def test_get_pub_data(mock_getenv):
     """Test the function get_pub_data
     """
-    from src.controllers import meta_controller
+    from frontend.src.controllers import meta_controller
     reload(meta_controller)  # reload the module to mock the os.getenv function
 
     # call the function
@@ -92,11 +92,11 @@ def test_get_pub_data(mock_getenv):
         AD_ACCOUNT,SPEND,COUNT of df_pub should be float"
 
 
-@patch('src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
+@patch('frontend.src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
 def test_get_likes_gender_age_data(mock_getenv):
     """Test the function get_likes_gender_age_data
     """
-    from src.controllers import meta_controller
+    from frontend.src.controllers import meta_controller
     reload(meta_controller)  # reload the module to mock the os.getenv function
     # call the function
     df_likes_gender_age = get_likes_gender_age_data()
@@ -125,11 +125,11 @@ def test_get_likes_gender_age_data(mock_getenv):
         df_likes_gender_age should be object"
 
 
-@patch('src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
+@patch('frontend.src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
 def test_get_likes_city_data(mock_getenv):
     """Test the function get_likes_city_data
     """
-    from src.controllers import meta_controller
+    from frontend.src.controllers import meta_controller
     reload(meta_controller)  # reload the module to mock the os.getenv function
     # call the function
     df_likes_city = get_likes_city_data()
@@ -155,11 +155,11 @@ def test_get_likes_city_data(mock_getenv):
         df_likes_city should be object"
 
 
-@patch('src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
+@patch('frontend.src.controllers.meta_controller.os.getenv', return_value='127.0.0.1')
 def test_get_couverture_data(mock_getenv):
     """Test the function get_couverture_data
     """
-    from src.controllers import meta_controller
+    from frontend.src.controllers import meta_controller
     reload(meta_controller)  # reload the module to mock the os.getenv function
     # call the function
     df_couverture = get_couverture_data()
