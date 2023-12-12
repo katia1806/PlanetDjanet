@@ -8,21 +8,21 @@ on:
 
 jobs:
   build-and-test:
-    # Set the job to run on Ubuntu
     runs-on: ubuntu-latest
+
   services:
-      mongodb:
-        image: mongo
-        env:
-          MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: rootpwd
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    mongodb:
+      image: mongo
+      env:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: rootpwd
+      ports:
+        - 27017:27017
+      options: >-
+        --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
 
     steps:
     - name: Check out repository
