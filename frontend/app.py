@@ -4,9 +4,36 @@ import streamlit as st
 
 # Internal imports
 from config import PAGES
-from src.common import display_social_media_links
 
-
+def display_social_media_links():
+    """Display social media links in the sidebar."""
+    # display the title
+    st.sidebar.markdown("Social Media Links")
+    
+    # display the social media links
+    col1, col2, col3 = st.sidebar.columns(3)
+    # Instagram Link
+    col1.markdown('''
+        <a href="https://www.instagram.com/planet___djanet/?hl=fr">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/240px-Instagram_icon.png" width="50" height="50" />
+        </a>''',
+                unsafe_allow_html=True
+                )
+    # Facebook Link
+    col2.markdown('''
+        <a href="https://www.facebook.com/PlanetDjanet/">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="50" height="50" />
+        </a>''',
+                unsafe_allow_html=True
+                )
+    # Twitter Link
+    col3.markdown('''
+        <a href="https://planetdjanet.com/fr/">
+            <img src="http://planetdjanet.com/wp-content/uploads/2020/06/logo2.0._blanc_noback.png" width="80" height="50" />
+        </a>''',
+                unsafe_allow_html=True
+                )
+    
 def display_sidebar() -> str:
     """Display the sidebar of the page
     Returns:
