@@ -12,13 +12,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: rootpwd
       MONGO_INITDB_DATABASE: planet_djanet
 
-  frontend:
-    container_name: planetdjanet-frontend
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "8501:8501" 
   
   backend:
     container_name: planetdjanet-backend
@@ -34,3 +27,15 @@ services:
       - MONGODB_DATABASE=planet_djanet
     depends_on:
       - mongodb
+
+  frontend:
+    container_name: planetdjanet-frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - BACKEND_HOSTNAME=planetdjanet-backend
+    ports:
+      - "8501:8501" 
+    depends_on:
+      - backend
