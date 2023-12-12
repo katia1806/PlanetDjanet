@@ -1,14 +1,10 @@
 # Internal imports
-from src import (
-    facebook,
-    instagram,
+from src.view import (
     meta,
     pictures,
     trips)
 
 PAGES = {
-    'Instagram Dashboard': instagram,
-    'Facebook Dashboard': facebook,
     'Meta Dashboard': meta,
     'Book your trip': trips,
     'Pictures': pictures,
