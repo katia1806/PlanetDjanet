@@ -12,6 +12,10 @@ If you have already run our project and you want to Clear the docker, please run
 
 **Attention: please set the Line of Sequence of mongo-init.sh on LF**
 
+### Testing of the backend by the link
+http://localhost:8000/{name of the page: meta, facebook, instagram}
+eg:  http://localhost:8000/meta
+
 ### Running of the application
 Go to the link http://localhost:8501/
 
