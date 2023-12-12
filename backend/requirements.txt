@@ -18,3 +18,5 @@ urllib3==2.1.0
 uvicorn==0.24.0.post1
 wheel==0.41.2
 pymongo==4.0.1
+pandas == 1.5.2
+
