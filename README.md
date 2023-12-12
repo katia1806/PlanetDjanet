@@ -2,12 +2,22 @@
 
 
 ## For running
+### Initialisation
 If it is the first time to run this project, please run
 ```docker-compose up --build```
 or run  ```docker-compose up``` if it is not the first time that you run it.
 
 If you have already run our project and you want to Clear the docker, please run
 ```docker-compose down -v```, but after that please run ```docker-compose up --build```
+
+**Attention: please set the Line of Sequence of mongo-init.sh on LF**
+
+### Testing of the backend by the link
+http://localhost:8000/{name of the page: meta, facebook, instagram}
+eg:  http://localhost:8000/meta
+
+### Running of the application
+Go to the link http://localhost:8501/
 
 
 ## For database
